@@ -1,63 +1,40 @@
 \chapter{Introdução} \label{Introducao}
 
+Segundo a Instrução do Comando da Aeronáutica \cite{ICA:100-37} o farol rotativo de aeródromo, quando existente, deverá permanecer ligado entre o pôr e
+o nascer do sol nos aeródromos com operação contínua (H24), ou seja, o foral rotativo além de usar luzes para comunicar diversas situações para tripulantes e profissionais do aeroporto ele também demarca o início do período noturno. 
 
-Este capítulo é a parte inicial do trabalho. Deve ser apresentado, com apoio da literatura, uma síntese do tema central do trabalho indicando o problema da pesquisa; os objetivos, a justificativa e a organização do trabalho. 
+As operações a noite em um aeroporto exigem o acionamento da sinalização luminosa especificos para o período. Segundo \cite{RBAC:154} a sinalização luminosa pode ser definida como a informação aeronáutica que compõe os auxílios visuais
+à navegação aérea composta por todas as luzes de pista de pouso e decolagem, de pista de táxi e de pátio de aeronaves.
 
+As luzes são um importante conjunto de auxílios visuais no aeroporto. Elas podem demarcar o limite da área de pouso. Diferentes cores são usadas para indicar o início da pista, o meio, a proximidade com o fim e o local exato onde termina a pista. Uma forma de detectar o funcionamento de todas as luzes é feita pela inspeção de pista que um procedimento normalmente descrito no Manual de Operações aeroportuárias(MOPS) que é especifico de cada aeroporto. 
 
-É importante ressaltar que um \textbf{trabalho de conclusão de curso} (TCC) da graduação é um ``documento que apresenta o resultado de estudo, devendo expressar conhecimento do assunto escolhido, que deve ser obrigatoriamente emanado da disciplina, módulo, estudo independente, curso, programa, e outros ministrados'' \cite{NBR14724:2011}  e  deve ser feito sob a coordenação de um orientador e/ou coorientador.
+A inspeção de pista é um procedimento complexo que envolte verificação de diversos componentes principalmente na área de movimento do aeroporto e pode ser realizada várias vezes durante o dia. Esse trabalho tem como objetivo propor a criação de um sistema para auxiliar a verificação de luzes nas laterais das pistas principais e taxiways com a finalidade de auxilar o procedimento de inspeção de pista.
+
 
 \section{Problema}
 
-O problema é o assunto principal do trabalho. É o que se pretende abordar, o
-que se quer pesquisar, a dificuldade que se procura resolver ou, em última análise, a
-pergunta que a pesquisa se propõe a responder.
+O funcionamento correto das luzes em pistas e taxiways e de fundamental importância para a segurança operacional do aeroporto. Esse trabalho pretende criar um mecanismo para auxiliar a verificação da iluminação correta nas laterais da pistas e taxiways de aeroportos. O trabalho irá pesquisa a existência de sistemas que utilizem sensores para a detecção do correto grau de iluminação e também para verificar se determinada luz está ou não queimada e aplica-lo ao contexto aeroportuário na ausência de uma sistema adequado o trabalho irá propor a criação de um sistema. 
 
-Ao apresentar o problema, o autor deve justificar a necessidade de pesquisálo e destacar a importância de sua solução para a ciência, a sociedade e a
-instituição patrocinadora, se for o caso. É importante, também, delimitar sua
-abrangência, especificando, entre outras coisas, a população, a área geográfica e o
-horizonte temporal considerados no trabalho.
+Existe diversas complexidades que esse sistema deverá sobrepor como os marcos de regulamentação de aviação civil brasileira, as condições meterológicas adversas que o sistema deve suportar e também ser um sistema de fácil manutenção e baixo custo.
+
+O trabalho e bem importante pois o não funcionamento correto das luzes podem acarretar no fechamente temporário do aerodrómo até o que problema seja resolvido. Um dos meios para evitar os problemas seria o uso de mecanimos de detecção de forma preventiva. 
 
 \section{Hipóteses}
 
-As hipóteses são necessárias quando se trata de um trabalho em que se
-procura estabelecer relações de causa e efeito entre fatos. São respostas ou
-soluções presumidas (portanto, provisórias e sujeitas a teste) para o problema
-apresentado. Como são “respostas”, as hipóteses devem sempre ser formuladas de
-modo afirmativo.
+O trabalho vai investigar se o uso de sensores mais comuns do mercado da plataforma Arduino que podem ser uma ferramenta auxiliar para a detecção de funcionamento de luzes de balizamento laterais de runways e taxiways.
 
 \section{Objetivos}
 
-Descrever o objetivo principal e os objetivos específicos da pesquisa. Os objetivos constituem a finalidade de um trabalho científico. O objetivo principal é mais amplo e deve descrever de forma clara e sucinta qual a meta que se deseja atingir (uma proposta que solucione um problema; uma proposta de melhoria; uma análise de uma situação, entre outros exemplos). 
-
-Para cumprir o objetivo principal muitas vezes é necessário delimitá-lo em partes menores, ou seja, em objetivos específicos. Os objetivos específicos devem ser partes do trabalho, que após cumpridos pelo pesquisador, atinge-se  o objetivo principal do trabalho. Devem vir listados, apresentados por tópicos e separados por ponto-e-vírgula.
-
-A lista a seguir sugere alguns verbos adequados para iniciar a formulação de
-objetivos:
-
-\begin{table}[h]
-\centering
-\begin{tabular}{|c|c|c|c|c|}
-\hline
-Aferir       & Comparar  & Definir      & Especificar & Mostrar     \\ \hline
-Analisar     & Comprovar & Delinear     & Estabelecer & Qualificar  \\ \hline
-Apontar      & Confirmar & Demonstrar   & Explicar    & Quantificar \\ \hline
-Apresentar   & Conhecer  & Descrever    & Gerar       & Realizar    \\ \hline
-Avaliar      & Constatar & Determinar   & Identificar & Relacionar  \\ \hline
-Caracterizar & Construir & Diagnosticar & Indicar     & Verificar   \\ \hline
-Classificar  & Criar     & Discutir     & Medir       & -           \\ \hline
-\end{tabular}
-\caption{Lista de Verbos para Objetivo}
-\label{tab1:lista de verbos para objetivo}
-\end{table}
-
+O objetivo geral desse trabalho é construir um sistema para detectar o funcionamento correto de luzes de balizamente de taxiways e runways em aeroportos. Os objetivos especificos desse trabalho consistem em:
+\begin{itemize}
+    \item Analisar os principais sensores do mercado para a composição de sistema de modo a descobrir suas vantagens e limitações.
+    \item Selecionar para a criação do protótipo os sensores mais adequados para a tarefa.
+    \item Elaborar o protótipo do Sistema afim de comprovar sua eficiência em atigir os objetivos.
+\end{itemize}
 
 \section{Organização do Trabalho}
 
-Um parágrafo fazendo uma descrição dos capítulos restantes do documento. 
-
-\subsection{Estrutura da Monografia}
-
-Segue uma \textbf{sugestão} para a estrutura da monografia: 
+Este trabalho está organizado conforme a estrutura abaixo:
 
 \begin{description}
    \item[Capítulo 1:] Introdução.

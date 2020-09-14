@@ -1,0 +1,17 @@
+\chapter{Conclusão} \label{conclusao} 
+
+No Brasil, alguns aeroportos regionais não possuem acessos a dados de meteorológica para tomada de decisões por meio da plataforma REDEMET. Uma alternativa para esses aeroportos seriam a obtenção de dados meteorológicos com o uso de estação meteorológica própria que muitas das vezes tem um custo considerável para a categoria regional de aeroportos. Esse trabalho elaborou um protótipo de estações meteorológica com a utilização de sensores da plataforma arduino, a disponibilização e armazenamento dos dados em tempo real através da plataforma de nuvem Thingspeak com objetivo de baratear custos e fornecer dados adequados para os aeroportos regionais. O trabalho coletou amostras da plataforma REDEMET e do protótipo, verificou qual o tipo de distribuição os se enquadram para a aplicação de teste estatístico adequado. No trabalho foi utilizado o teste de Wilcoxon para verificar se as médias das variáveis nas amostras poderiam ser consideradas iguais com um nível de significância de 5\%.
+
+Na comparação feita o resultado foi de não igualdade entre as médias dos dados coletados para um nível de significância de 5\% em nenhuma variável meteorológica. Com o destaque negativo para as amostras coletadas pelo sensor de vento(SV10) que queimou durante o experimento. De forma que não se mostra verdadeira a hipótese do trabalho.
+
+Esses resultados demonstram que não podemos utilizar os dados coletados pelo protótipo para observações locais que ocorrem no caso de incidentes ou acidentes aeronáuticos. É possível utilizar para observações regulares desde que fatores como posição e calibração do sensor esteja devidamente ajustado que podem ter contribuido para que a hipótese fosse rejeitada.
+
+Sobre o fator localização é fato que o protótipo não está no mesmo local que estação da REDEMET então pode não capturar as mesmas condições meteorológicas. Entretanto, as variações de temperatura e pressão, por exemplo, na região metropolitana de Fortaleza onde o experimento foi realizado são pequenas. A calibração dos sensores não ser a mesma da plataforma REDE pode ter sido o grande fator a se considerar visto que o trabalho utilizou os dispositivos conforme a configuração de fábrica sem nenhum tipo de calibração.
+
+
+%%====== Section ========%
+\section{Trabalhos Futuros}\label{trabalhosFuturos}
+
+Esse trabalho não considerou utilizar modelos matemáticos para a calibração de sensores para trabalhos futuros seria proveitoso avaliar as mensurações sem e com calibração. Provando ou não possíveis diferenças entre as medições. Outro fator muito importante seria realizar o experimento dentro de sítio aeroportuário de uma aeroporto regional atendido pela plataforma REDEMET, desse modo, a localização da estação teria pouca interferência. Por fim utilizar outros sensores compatíveis com a plataforma arduino para teste especialmente para medição da direção e velocidade do vento.
+
+

@@ -41,6 +41,8 @@ Estação Meteorológica Vantage Pro2 Davis (Cabo) - K6152C     & R\$ 9000,00   
 \end{table}
 
 Na tabela \ref{tab:custos_estacoes} foi escolhido apenas estações que tenha mensurações similares a estação desenvolvida no trabalho o único sensor adicional nelas é o pluviométrico. Existem outras estações, que medem luminosidade, índices de raio UV. Entretanto, não seria muito justo comparar equipamentos que não possuem capacidades similares. É possível notar que o custo do protótipo desenvolvido nesse trabalho e de no máximo 20\% do valor de uma estação comercial.
+
+Vale ressaltar a diferença entre protótipo, MVP(Produto mínimo viável) e produto comercial. O protótipo como é o caso desse trabalho tem por objetivo validar ou não uma hipótese e deve ser muito mais barato em custo em relação ao produto comercial. O MVP é uma etapa acima por que deve ter a hipótese comprovada e passar por validações mínimas de mercado principalmente atendendo expectativas de usuários. O produto comercial é a última escala por que possui todas as características do MVP e validações feita por órgãos de controle, no Brasil, pode citar o INMETRO(Instituto Nacional de Metrologia, Qualidade e Tecnologia) que emite um certificado de calibração dos equipamentos. A Anatel(Agência Nacional de Telecomunicações) que pode validar o sinal wireless da estação. Essa seção tem como objetivo destacar que o valor do protótipo está bem abaixo de um produto comercial.
  
 
 \section{Análise dos dados}
@@ -86,7 +88,9 @@ Além de outliers é possível ver que a mediana das temperaturas coletadas pelo
 \end{table}
 
 \setlength\parindent{2em}
-Aplicando o teste de distribuições o resultado foi que as amostras não são seguem o padrão da distribuição normal. Nesse caso será aplicado o cálculo estatístico de Wilcoxon, que deu como resultado que a hipótese H0 pode ser rejeitada com o pvalor de $4e-11$ um número muito próximo de zero. Nesse caso podemos concluir que para um nível de significância de 5\% as médias das temperaturas coletas pelo protótipo e pela plataforma REDEMET não são iguais.
+Aplicando o teste de distribuições o resultado foi que as amostras não seguem o padrão da distribuição normal. Nesse caso será aplicado o cálculo estatístico de Wilcoxon, que deu como resultado que a hipótese H0 pode ser rejeitada com o pvalor de $4e-11$ um número muito próximo de zero. Nesse caso podemos concluir que para um nível de significância de 5\% as amostras das temperaturas coletas pelo protótipo e pela plataforma REDEMET não são iguais.
+
+Ajustando os valores das observações do protótipo em -7\% com o objetivo de igualar a média da amostra com a da REDEMET e aplicando novamente o teste de Wilcoxon o resultado foi de aceitação da hipótese H0, ou seja, as amostras foram consideradas iguais. Nesse cenário podemos afirmar que é possível exister a similaridade na mensuração bastando apenas uma calibração do equipamento. 
 
 
 \subsection{Análise da variável de pressão}
@@ -100,7 +104,7 @@ Na distribuição da variável de pressão podemos observar que ela foi mais uni
     \label{fig:dist_pressao}
 \end{figure}
 
-Pelo gráfico \ref{fig:box_plot_pressao} é possível destacar a presença de outliers nas amostras. Visualmente as amostras têm resultados bem similares a diferença pode ser na questão de calibração do sensor. Nesse gráfico não é da para ver a mediana dos valores possivelmente foi igual algum intervalo interquartil do gráfico.
+Pelo gráfico \ref{fig:box_plot_pressao} é possível destacar a presença de outliers nas amostras. Visualmente as amostras têm resultados bem similares. Nesse gráfico não é da para ver a mediana dos valores possivelmente foi igual algum intervalo interquartil do gráfico.
 
 \begin{figure} [!h]
     \centering
@@ -127,6 +131,8 @@ Com as estatísticas descritivas da variável de pressão merece destaque o valo
 \end{table}
 
 O resultado do teste de normalidade foi favorável apenas para a amostra da plataforma REDEMET enquanto os dados do protótipo não se encaixaram em uma distribuição normal. Nesse caso será utilizado o cálculo estatístico de Wilcoxon que teve como resultado a rejeição da hipótese H0 com o pvalor muito baixo $1.73e-14$. Nesse caso podemos concluir que para um nível de significância de 5\% as médias das amostras coletas para a variável pressão do protótipo e da plataforma REDEMET não são iguais.
+
+Na variável pressão mesmo aplicando um fator de correção de +1\% nos valores das observações da amostra do protótipo com o objetivo de igualar a média da amostra e da plataforma REDEMET não foi possível obter um resultado positivo no teste de Wilcoxon. O que pode indicar que os equipamentos têm formas de mensuração diferentes e que conforme aumente a quantidade das observações a diferença entre as amostras irá aumentar.
 
 \subsection{Análise da variável de umidade}
 
@@ -169,9 +175,12 @@ Pela tabela \ref{tab:est_desc_umidade_prot} de dados estatísticos descritivos  
 
 Aplicando o teste de normalidade nas distribuições apenas a amostra da REDEMET pode ser classificada como normal. Aplicando o teste de Wilcoxon tivemos como resultado a rejeição da hipótese H0 com o pvalor muito baixo $2.94e-11$. Nesse caso podemos concluir que para um nível de significância de 5\% as médias das amostras coletas para a variável umidade não são iguais.
 
+Aplicando um fator de correção de -5.5\% nos valores das observações do protótipo e aplicando novamente o teste de Wilcoxon o resultado foi de aceitação da hipótese o que indica que basta uma calibração no equipamento para que as amostras sejam consideradas iguais para um nível de significância de 5.5\%. 
+
+
 \subsection{Análise da variável direção do vento}
 
-A distribuição das amostras para essa variável foi bem distinta. Como podemos observar no gráfico de distribuição. A concentração das medições ficou similar nas amostras com valores próximos a 100 graus.
+A distribuição das amostras para essa variável foi muito similar. Foi feita uma aproximação dos dados da plataforma REDEMET para a comparação com os dados do protótipo visto que o equipamento DV10 só coleta dados nos seguintes graus (0º, 45º, 90º, 135º, 180º, 225º, 270º e 315º) que representam os pontos cardeais e colaterais. 
 
 \begin{figure} [!h]
     \centering
@@ -180,7 +189,7 @@ A distribuição das amostras para essa variável foi bem distinta. Como podemos
     \label{fig:dist_dirvento}
 \end{figure}
 
-No gráfico \ref{fig:box_plot_dirvento} existe a presença de outliers na amostra do protótipo. A mediana da amostra do protótipo foi superior a da REDEMET. Fica mais evidente a grande variação dos valores na amostra da plataforma REDEMET. 
+No gráfico \ref{fig:box_plot_dirvento} de box plot é possível ver muito bem a similaridade entre as amostras. Sem a presença de outlier com o valor mínimo coletado pela plataforma REDEMET. 
 
 \begin{figure} [!h]
     \centering
@@ -189,24 +198,25 @@ No gráfico \ref{fig:box_plot_dirvento} existe a presença de outliers na amostr
     \label{fig:box_plot_dirvento}
 \end{figure}
 
-Os valores de mensuração do sensor do protótipo são limitados aos pontos cardeais e colaterais o que dá no total oito valores (0º, 45º, 90º, 135º, 180º, 225º, 270º e 315º) possíveis enquanto os dados coletados na amostra REDEMET mostram maiores variações. As estatísticas descritivas mostram um grande desvio padrão na variável a média dos valores ficou bem próxima. Os valores máximo e mínimo mostram o problema de precisão do sensor do protótipo que não conseguiria medir o valor 60 nem 190.
+Na tabela de estatísticas descritivas \ref{tab:est_desc_dirvento_prot} temos médias e desvio padrão muito próximo e valores máximos iguais isso é um sinal positivo para o teste de igual de média amostrais.
 
-\begin{table}[]
+\begin{table}[!h]
 \centering
 \begin{tabular}{l|c|c|}
 \cline{2-3}
                                                 & \multicolumn{1}{l|}{\textbf{Umidade REDEMET}} & \textbf{Umidade Protótipo} \\ \hline
 \multicolumn{1}{|l|}{Quantidade de Observações} & 90                                            & 90                         \\ \hline
-\multicolumn{1}{|l|}{Média}                     & 109.66                                        & 117.24                     \\ \hline
-\multicolumn{1}{|l|}{Desvio Padrão}             & 29.65                                         & 18.82                      \\ \hline
-\multicolumn{1}{|l|}{Valor Mínimo}              & 60                                            & 90                         \\ \hline
-\multicolumn{1}{|l|}{Valor Máximo}              & 190                                           & 180                        \\ \hline
+\multicolumn{1}{|l|}{Média}                     & 110.00                                        & 112.00                     \\ \hline
+\multicolumn{1}{|l|}{Desvio Padrão}             & 26.34                                         & 27.90                      \\ \hline
+\multicolumn{1}{|l|}{Valor Mínimo}              & 90                                            & 45                         \\ \hline
+\multicolumn{1}{|l|}{Valor Máximo}              & 180                                           & 180                        \\ \hline
 \end{tabular}
 \caption{Dados estatísticos variável direção do vento}
 \label{tab:est_desc_dirvento_prot}
 \end{table}
 
-No teste de normalidade o resultado foi que ambas as amostras não seguem o padrão da distribuição normal. Na aplicação do teste de Wilcoxon tivemos como resultado do pvalor de 0,00079 bem inferior ao nível de significância. Nesse caso podemos concluir que as médias das amostras do protótipo e da plataforma REDEMET não são iguais para um nível de significância de 5\%.
+No teste de normalidade o resultado foi que ambas as amostras não seguem o padrão da distribuição normal. Na aplicação do teste de Wilcoxon tivemos como resultado do pvalor de 0,35 bem superior ao nível de significância. Nesse caso podemos concluir que as médias das amostras do protótipo e da plataforma REDEMET são iguais para um nível de significância de 5\%.
+
 
 \subsection{Análise da variável velocidade do vento}
 
@@ -246,4 +256,14 @@ Observando os valores das estatísticas descritivas na tabela \ref{tab:est_desc_
 \end{table}
 
 É evidente que a distribuição do protótipo não é normal aplicando o teste de normalidade essa observação se confirmou e a distribuição da REDEMET foi classificada como normal. Foi aplicado o teste de Wilcoxon mesmo já sabendo que o resultado seria rejeição que se confirmou com um pvalor de 0,0014. É possível concluir que as médias das amostras do protótipo e da plataforma REDEMET não são iguais para um nível de significância de 5\%.
+
+O outliers da amostra do protótipo ocorreram devido em um instante de tempo de aproximadamente 30 minutos que a plataforma Thingspeak ficou sem receber os dados coletados quando houve o retorno da plataforma as mensurações foram enviadas de forma equivocada a pressão no lugar da temperatura. A pressão é umidade também ficaram com valores equivocados. Conforme figura do dataset \ref{fig:outlier}
+
+\begin{figure} [!h]
+    \centering
+    \caption{Outlier da Amostra do Protótipo}    
+    \includegraphics [scale = 0.5] {Figuras/outlier.png}
+    \label{fig:outlier}
+\end{figure}
+
 

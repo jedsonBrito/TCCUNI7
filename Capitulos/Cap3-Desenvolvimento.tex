@@ -41,7 +41,28 @@ No script que está no apêndice \ref{PythonScript} foram deixados explícitos o
 
 Para que a comunicação aconteça com a plataforma é necessário a definição de algumas variáveis como a chave da API de escrita, o endereço MQTT do servidor, e o ID do canal.
 
-Após todas essas configurações as publicações são feitas dentro de um loop infinito onde o tempo de transmissão pode ser configurado. Inicialmente para testes foi estabelecido um valor de 30 segundos. Dentro do loop temos a chamada para uma função \emph{realizar\_mensuração(comando):} que transmite ao arduino um carácter correspondente a um sensor. Assim que todas os dados são obtidos é montado um payload para a publicação MQTT e enviado a plataforma ThingSpeak.
+Após todas essas configurações as publicações são feitas dentro de um loop infinito onde o tempo de transmissão pode ser configurado. Inicialmente para testes foi estabelecido um valor de 30 segundos. Para exemplificar vou destacar o trecho de código onde o payload é montado e enviado para a plataforma Thingspeak. Dentro do laço perpétuo cada varíavel meterológica tem seu valor coletado através do método realizar\_mensuracao depois o payload é montado conforme a ordem de cadastrado na plataforma Thingspeak e por fim é publicado utilizando o método single do objeto publish do protocolo MQTT. 
+
+\begin{lstlisting}
+while(True):
+
+    temperatura = realizar_mensuracao(b't')
+    pressao = realizar_mensuracao(b'p')
+    umidade = realizar_mensuracao(b'u')
+    dir_vento = realizar_mensuracao(b'd')
+    vel_vento = realizar_mensuracao(b'a')
+    
+    tPayload = "field1=" + str(pressao) + "&field2=" + str(umidade) + "&field3=" + str(dir_vento) +  "&field4=" + str(temperatura) +  "&field5=" + str(vel_vento)
+
+    try:
+        publish.single(topic, payload=tPayload, hostname=mqttHost, port=tPort, tls=tTLS, transport=tTransport)
+        espera(30)
+
+    except (KeyboardInterrupt):
+        break
+
+    except:
+        print ("Erro ao publicar os dados.") \end{lstlisting}
 
 \subsection{Código embarcado no arduino}
 
@@ -85,7 +106,7 @@ O protótipo ira enviar informações das variáveis para a plataforma ThingSpea
 \begin{figure} [!h]
     \centering
     \caption{Aplicativo ThingSpeak}
-    \includegraphics [scale=0.15]{Figuras/img_app.png}
+    \includegraphics [scale=0.13]{Figuras/img_app.png}
     \legend{Fonte: ThingSpeak App }
     \label{fig:img_app}
 \end{figure}
@@ -94,7 +115,7 @@ Depois de terminada a etapa de coleta dos dados pelo protótipo é preciso obter
 
 \subsection{Teste de hipótese}
 
-As amostras coletadas têm tamanhos iguais são 90 observações para cada varíavel. Será utilizado um teste de igualdade entre médias para cada varíavel que consiste em cinco passos são eles:
+As amostras coletadas têm tamanhos iguais são 90 observações para cada varíavel. Será utilizado um teste para verificar a igualdade entre as amostras de cada varíavel que consiste em cinco passos são eles:
 
 \begin{enumerate}
    \item Formulação da Hipótese.

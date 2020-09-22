@@ -173,6 +173,9 @@ A observação local é aquela realizada quando ocorrer um acidente ou incidente
 
 Este trabalho utilizará das observações regulares no formato METAR para testar se os dados coletados pelo protótipo elaborado no trabalho podem ser consideradas iguais aos da plataforma REDEMET.
 
+
+
+
 \subsection{Sensores}
 
 Na eletrônica um sensor é um dispositivo com qualquer componente elétrico ou circuito eletrônico que permite a análise de uma determinada condição do ambiente\cite{neto2020eletronica}. Podendo ser
@@ -201,6 +204,14 @@ Os sensores digitais têm como base, níveis de tensão bem definidos. Eles pode
 
 O fato é que em projetos que envolve sensores sempre iremos encontrar os dois tipos. Na plataforma arduino utilizamos as portas lógicas digitais isso fornece a capacidade de receber e enviar sinais digitais e quando se utiliza portas analógicas é possível capturar sinais analógicos e mapeá-los para sinais digitais.
 
+Nesse trabalho o critério de seleção dos sensores para a compor o protótipo da estação foi: 
+ \begin{enumerate}
+   \item Disponibilidade do sensor no mercado brasileiro.
+   \item Menor Preço.
+   \item Sensores que podem medir mais de uma varíavel.
+   \item Estudos comprovando a eficiência do sensor.
+ \end{enumerate}
+
 \subsubsection {Anemômetro}
 
 O anemômetro utilizado no trabalho e do tipo concha que é composto por três ou mais conchas de formato especial montada simetricamente formando ângulos de 90 graus com um eixo vertical. A velocidade do vento, independentemente de direção, faz mover o conjunto das conchas um mecanismo que conta as rotações e então a velocidade é calculada com o auxílio de um dispositivo de contagem no caso do modelo escolhido para esse trabalho utiliza um sensor Reed Switch \cite{USINAINFOBLOG}.
@@ -214,6 +225,8 @@ O anemômetro utilizado no trabalho e do tipo concha que é composto por três o
 \end{figure}
 
 O modelo de anemômetro SV10 foi escolhido para o trabalho por que foi o único encontrado no mercado. Segundo o manual do fabricante \ref{manAnemot} ele trabalha com várias tensões 3V3, 5V e 12V, e formado por três conchas feitas de alumínio, segundo a descrição do equipamento ele pode medir ventos de até 120 Km/h\cite{USINAINFOBLOG}.
+
+
 
 \subsubsection{Biruta}
 
@@ -286,7 +299,7 @@ Intervalo de Medições        & 1s              & 2s              \\ \hline
 
 Fica bem exposto na tabela \ref{tab:dhtsensor}, que o DHT11 ele é duas vezes mais rápido que o DHT22 em suas medições. Sua precisão em relação a umidade relativa do ar não é boa podendo chegar a $\pm$ 5\% além de consumir mais energia comparado ao DHT22. No trabalho de \cite{ribeiro2016avaliaccao} e demonstrado que realmente a faixa de erro de 2\% se comprova. Vale notar que os dois podem ser alimentados com a faixa de tensão entre 3.3V a 5.5V. Em relação a custo também o DHT11 é bem mais barato que o DHT22. O DHT11 custa em média 70\% que DHT22.
 
-Nesse trabalho se foi escolhido o sensor de DHT22 por ser muito utilizado no mercado e também pelo baixo consumo energético com a faixa de precisão para umidade com menor percentual de erro.
+
 
 \subsection{Plataforma ThingSpeak}
 
@@ -302,7 +315,11 @@ A plataforma Thingspeak também permite o armazenamento dos dados coletados e a 
     \label{fig:thinkSpeak}
 \end{figure}
 
-Existem outras plataformas de IOT concorrentes do Thingspeak destaco a plataforma Blynk que foi considerada para uso no projeto. Ela possui com três componentes um aplicativo, um servidor e a placa. Tem a vantagem de possuir configurações como a de conexão com a Internet para placas mais utilizadas no mercado como arduino UNO, NODEMCU, ESP8266. Permitindo também essa comunicação por portas seriais com uma estação de trabalho \cite{8473224}. O Blynk é parte gratuito para uso de bibliotecas, servidor e hospedagem na nuvem. A forma de monetizar está no aplicativo esse serviço tem uma série de widgets para visualização de informações ou botões para acionar comandos. Cada widget consome uma moeda virtual da plataforma ao iniciar uma conta o usuário recebe um valor inicial e vai gastando conforme as escolhas de componentes na plataforma.
+O Thingspeak tem suporte a linguagens de programação como Ruby, Python e Node.js. Linguagens bem populares no meio WEB e a facilidade de integração com Python permite o acesso a várias bibliotecas que o Python possui para trabalhar com análise de dados não obrigando o desenvolvedor a utilizar a linguagem que já vem com a plataforma o MATLAB.
+
+A plataforma possui alguns tipos de licenciamento esse trabalho utilizou a licença free que possui as limitações de enviar até 3 milhões de mensagens por ano ao serviço ThingSpeak, a criação de até quatro canais e as operações de atualização deve ter um intervalo mínimo de 15 segundos. Cada mensagem deve conter até 3000 bytes essa limitação vale para todos os tipos de licença. Existe também limitação em relação ao armazenamento na conta gratuita é possível armazenar até 10 milhões de mensagens por até três anos se não ocorrer nem uma atualização dos dados no canal. Esse trabalho utilizou um total de 13 516 mensagens menos de 1\% da capacidade oferecida pela plataforma.
+
+Existem outras plataformas de IOT concorrentes do Thingspeak destaco a plataforma Blynk que foi considerada para uso no projeto. Ela possui com três componentes um aplicativo, um servidor e um conjunto de placas. Tem a vantagem de ter configurações como a conexão com a Internet para placas mais utilizadas no mercado como arduino UNO, NODEMCU, ESP8266. Permitindo também essa comunicação por portas seriais com uma estação de trabalho \cite{8473224}. O Blynk é parte gratuito para uso de bibliotecas, servidor e hospedagem na nuvem. A forma de monetizar está no aplicativo esse serviço tem uma série de widgets para visualização de informações ou botões para acionar comandos. Cada widget consome uma moeda virtual ao iniciar uma conta o usuário recebe um valor inicial.
 
 \begin{figure}[h!]
     \centering
@@ -312,11 +329,6 @@ Existem outras plataformas de IOT concorrentes do Thingspeak destaco a plataform
     \label{fig:blynk}
 \end{figure}
 
-A grande desvantagem dessa plataforma é que a visualização das informações fica dependente apenas dos widgets oferecidos pelo serviço, apesar de possuir uma grande variedade de componentes, O código do aplicativo é fechado então não é possível modificar essas visualizações conforme necessidade. Outro aspecto negativo é que se os componentes não forem bem posicionados pode gerar confusão na interpretação da informação que é vista apenas por dispositivos móveis o que limitaria no caso de uma necessidade de expor em uma televisão ou painel de informações não seria adequado.
-
-O Thingspeak tem suporte a linguagens de programação como Ruby, Python e Node.js. Linguagens bem populares no meio WEB e a facilidade de integração com Python permite o acesso a várias bibliotecas que o Python possui para trabalhar com análise de dados não obrigando o desenvolvedor a utilizar a linguagem que já vem com a plataforma o MATLAB.
-
-O serviço do Thingspeak tem também suas limitações como a operação de atualização só pode ser feita a cada 15 segundos. A razão para a limitação e que muitas atualizações podem sobrecarregar a plataforma. Outra desvantagem é o número limitado de gráficos apesar de outros serviços nem possuir essa característica de plotar informações. Também não existem informações de onde estão armazenados os dados nem dos mecanismos de segurança assim como não é informado por quanto tempo os dados ficarão armazenados nos servidores.
 
 \subsection{Protocolo MQTT}
 
@@ -331,6 +343,7 @@ Conforme descrito em \cite{de2017internet} O MQTT funciona através de três est
 \end{itemize}
 
 As vantagens de utilização do protocolo é na baixa necessidade de processamento para o envio de mensagens e no baixo consumo de banda com seu cabeçalho muito pequeno cerca de 2 bytes segundo \cite{mota2017analise}. A desvantagem é que o protocolo não possui uma camada de segurança então utiliza os mecanismos do TCP/IP.
+
 
 
 \section{Trabalhos Relacionados}

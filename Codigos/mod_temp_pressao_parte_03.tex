@@ -1,0 +1,31 @@
+void conectar(){
+    // Conectar ou reconectar no WiFi
+  if(WiFi.status() != WL_CONNECTED){
+    Serial.print("Tentando conectar na Rede: ");
+    Serial.println(SECRET_SSID);
+    while(WiFi.status() != WL_CONNECTED){
+      WiFi.begin(ssid, pass);  
+      Serial.print(".");
+      delay(5000);     
+    } 
+    Serial.println("\nConectado.");
+  }
+}
+
+void loop() {
+  conectar();
+  Serial.println("Lendo Temperatura e Pressao");
+  temperatura = bmp.readTemperature();
+  pressao = bmp.readPressure();
+  ThingSpeak.setField(1, temperatura);
+  ThingSpeak.setField(2, pressao);
+  
+  int x = ThingSpeak.writeFields(myChannelNumber, myWriteAPIKey);
+  if(x == 200){
+    Serial.println("Canal Atualizado com sucesso.");
+  }
+  else{
+    Serial.println("Problema na atualização. Erro de código HTTP " + String(x));
+  }
+  delay(30000); //Espera 30 segundos para enviar os dados novamente
+}
